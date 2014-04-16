@@ -16,8 +16,9 @@ RUN apt-get update
 RUN apt-get -y -q install python-software-properties software-properties-common
 RUN apt-get -y -q install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
 
-RUN mkdir -p /.ssh
+RUN mkdir -p /.ssh /app
 RUN chmod -R 600 /.ssh
+RUN chown postgres /app /.ssh
 
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-9.3`` package when it was ``apt-get installed``
 USER postgres
